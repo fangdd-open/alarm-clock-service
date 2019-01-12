@@ -1,0 +1,58 @@
+## Alarm Clock Service Server
+## 闹钟服务
+---
+
+# 服务器配置
+server:
+    port: 8080
+
+# 日志配置
+logging:
+    level:
+        root: INFO
+    file: 'logs/server.log'
+    pattern:
+        console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{35} - %msg%n'
+        file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n'
+
+# 管理配置
+management:
+    server:
+        port: 8090
+    security:
+        enabled: false
+    info:
+        git:
+            mode: full
+
+# Spring Boot 配置
+spring:
+    profiles:
+        active:
+            - dev
+    redis:
+        host: localhost
+        port: 6379
+        password: ''
+    jackson:
+        date-format: 'yyyy-MM-dd HH:mm:ss'
+        time-zone: 'Asia/Shanghai'
+
+# dubbo配置
+dubbo:
+    application:
+        name: 'alarmClockService'
+    registry:
+        address: 'zookeeper://zk1:2181?backup=zk2:2181,zk3:2181'
+    protocol:
+        name: 'dubbo'
+        port: 8088
+    scan:
+      base-packages: 'com.fangdd.open.alarmclock.application.dubbo'
+    provider:
+      timeout: 20000
+
+# 自定义配置
+fangdd:
+    alarm:
+        ding-robot-token: ''

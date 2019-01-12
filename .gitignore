@@ -1,0 +1,11 @@
+/target/
+*/target
+
+**/*.log
+**/*.log.*
+*/*.log
+**/*.port
+**/*.pid
+
+**/nbproject/
+**/nbactions.xml
